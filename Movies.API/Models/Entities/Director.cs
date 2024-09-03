@@ -8,6 +8,9 @@
 
         // Skip navigation for the many-to-many relationship with Movie
         public ICollection<Movie> Movies { get; } = [];
+
+        // One-to-one relationship with ContactInformation
+        public ContactInformation ContactInformation { get; set; } = null!;
         
     }
 }
