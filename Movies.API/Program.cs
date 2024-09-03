@@ -1,16 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using Movies.API.Data;
+using Movies.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
+// Register DbContext with the DI Container
 builder.Services.AddDbContext<MoviesContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MoviesDB")));
     
-
+// Register application services
+builder.Services.AddScoped<IMovieService, MovieService>();
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -24,9 +25,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
