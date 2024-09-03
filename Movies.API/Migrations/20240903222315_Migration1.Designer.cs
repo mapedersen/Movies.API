@@ -12,8 +12,8 @@ using Movies.API.Data;
 namespace Movies.API.Migrations
 {
     [DbContext(typeof(MoviesContext))]
-    [Migration("20240903122539_In")]
-    partial class In
+    [Migration("20240903222315_Migration1")]
+    partial class Migration1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -73,6 +73,20 @@ namespace Movies.API.Migrations
                     b.HasKey("ActorId");
 
                     b.ToTable("Actors");
+
+                    b.HasData(
+                        new
+                        {
+                            ActorId = 1,
+                            DateOfBirth = new DateTime(1956, 7, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Tom Hanks"
+                        },
+                        new
+                        {
+                            ActorId = 2,
+                            DateOfBirth = new DateTime(1974, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Leonardo DiCaprio"
+                        });
                 });
 
             modelBuilder.Entity("Movies.API.Models.Entities.ContactInformation", b =>
@@ -120,6 +134,20 @@ namespace Movies.API.Migrations
                     b.HasKey("DirectorId");
 
                     b.ToTable("Directors");
+
+                    b.HasData(
+                        new
+                        {
+                            DirectorId = 1,
+                            DateOfBirth = new DateTime(1946, 12, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Steven Spielberg"
+                        },
+                        new
+                        {
+                            DirectorId = 2,
+                            DateOfBirth = new DateTime(1970, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Christopher Nolan"
+                        });
                 });
 
             modelBuilder.Entity("Movies.API.Models.Entities.Genre", b =>
@@ -137,6 +165,18 @@ namespace Movies.API.Migrations
                     b.HasKey("GenreId");
 
                     b.ToTable("Genres");
+
+                    b.HasData(
+                        new
+                        {
+                            GenreId = 1,
+                            Name = "Action"
+                        },
+                        new
+                        {
+                            GenreId = 2,
+                            Name = "Drama"
+                        });
                 });
 
             modelBuilder.Entity("Movies.API.Models.Entities.Movie", b =>
@@ -169,6 +209,26 @@ namespace Movies.API.Migrations
                     b.HasIndex("DirectorId");
 
                     b.ToTable("Movies");
+
+                    b.HasData(
+                        new
+                        {
+                            MovieId = 1,
+                            Description = "A group of U.S. soldiers go behind enemy lines to retrieve a paratrooper.",
+                            DirectorId = 1,
+                            Rating = 8L,
+                            ReleaseDate = new DateTime(1998, 7, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Saving Private Ryan"
+                        },
+                        new
+                        {
+                            MovieId = 2,
+                            Description = "A thief who enters the dreams of others to steal secrets from their subconscious.",
+                            DirectorId = 2,
+                            Rating = 9L,
+                            ReleaseDate = new DateTime(2010, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Inception"
+                        });
                 });
 
             modelBuilder.Entity("ActorMovie", b =>

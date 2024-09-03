@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Movies.API.Migrations
 {
     /// <inheritdoc />
-    public partial class In : Migration
+    public partial class Migration1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -142,6 +144,42 @@ namespace Movies.API.Migrations
                         principalTable: "Movies",
                         principalColumn: "MovieId",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Actors",
+                columns: new[] { "ActorId", "DateOfBirth", "Name" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(1956, 7, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), "Tom Hanks" },
+                    { 2, new DateTime(1974, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "Leonardo DiCaprio" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Directors",
+                columns: new[] { "DirectorId", "DateOfBirth", "Name" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(1946, 12, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Steven Spielberg" },
+                    { 2, new DateTime(1970, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "Christopher Nolan" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Genres",
+                columns: new[] { "GenreId", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Action" },
+                    { 2, "Drama" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Movies",
+                columns: new[] { "MovieId", "Description", "DirectorId", "Rating", "ReleaseDate", "Title" },
+                values: new object[,]
+                {
+                    { 1, "A group of U.S. soldiers go behind enemy lines to retrieve a paratrooper.", 1, 8L, new DateTime(1998, 7, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), "Saving Private Ryan" },
+                    { 2, "A thief who enters the dreams of others to steal secrets from their subconscious.", 2, 9L, new DateTime(2010, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), "Inception" }
                 });
 
             migrationBuilder.CreateIndex(

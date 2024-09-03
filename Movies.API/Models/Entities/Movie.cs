@@ -8,13 +8,13 @@
         public DateTime ReleaseDate { get; set; }
         public string Description { get; set; } = string.Empty;
 
+        // Foreign key
         public int DirectorId { get; set; }
+        // Navigation property
         public Director Director { get; set; } = null!;
 
-        // Many-to-many relationship with Actor using skip navigation
+        // Many-to-many relationship with skip navigation
         public ICollection<Actor> Actors { get; } = [];
-
-        // Many-to-many relationship with Genre using skip navigation
         public ICollection<Genre> Genres { get; } = [];
 
     }

@@ -3,14 +3,9 @@ using Movies.API.Models.DTO;
 
 namespace Movies.API.Services
 {
-    public class MovieService : IMovieService
+    public class MovieService(MoviesContext context) : IMovieService
     {
-        private readonly MoviesContext _context;
-
-        public MovieService(MoviesContext context)
-        {
-            _context = context;
-        }
+        private readonly MoviesContext _context = context;
 
         public IEnumerable<MovieDto> GetAllMovies()
         {
