@@ -1,6 +1,4 @@
-﻿using Movies.API.Models.Entities.Relationships;
-
-namespace Movies.API.Models.Entities
+﻿namespace Movies.API.Models.Entities
 {
     public class Movie
     {
@@ -10,8 +8,14 @@ namespace Movies.API.Models.Entities
         public DateTime ReleaseDate { get; set; }
         public string Description { get; set; } = string.Empty;
 
-        public ICollection<Director> Directors { get; } = [];
-        public List<MovieDirector> MovieDirectors { get; } = [];
-        public List<MovieGenre> MovieGenres { get; } = [];
+        public int DirectorId { get; set; }
+        public Director Director { get; set; } = null!;
+
+        // Many-to-many relationship with Actor using skip navigation
+        public ICollection<Actor> Actors { get; } = [];
+
+        // Many-to-many relationship with Genre using skip navigation
+        public ICollection<Genre> Genres { get; } = [];
+
     }
 }
