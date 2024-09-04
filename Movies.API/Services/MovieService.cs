@@ -1,4 +1,5 @@
 ﻿using Movies.API.Data;
+using Movies.API.Mappers;
 using Movies.API.Models.DTO;
 
 namespace Movies.API.Services
@@ -10,15 +11,18 @@ namespace Movies.API.Services
         public IEnumerable<MovieDto> GetAllMovies()
         {
             var movies = _context.Movies.ToList();
+            return MovieMappers.MapCollectionToDto(movies);
+        }
 
-            var movieDtos = movies.Select(movie => new MovieDto(
-                movie.Title,
-                movie.Rating,
-                movie.ReleaseDate,
-                movie.Description
-            ));
+        public MovieDto GetMovieById(int id)
+        {
+            var movie = _context.Movies.FirstOrDefault(x => x.MovieId == id);
 
-            return movieDtos;
+            if (movie == null)
+            {
+                return null;
+            }
+            return MovieMappers.MapSingleToDto(movie);
         }
     }
 }

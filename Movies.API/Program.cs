@@ -4,11 +4,10 @@ using Movies.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 // Register DbContext with the DI Container
 builder.Services.AddDbContext<MoviesContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MoviesDB")));
-    
+
 // Register application services
 builder.Services.AddScoped<IMovieService, MovieService>();
 builder.Services.AddControllers();

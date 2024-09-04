@@ -10,11 +10,20 @@ namespace Movies.API.Controllers
     {
         private readonly IMovieService _movieService = movieService;
 
-        [HttpGet]   
+        [HttpGet]
         public ActionResult<IEnumerable<MovieDto>> GetMovies()
         {
             var movies = _movieService.GetAllMovies();
             return Ok(movies);
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public ActionResult<MovieDto> GetMovieById(int id)
+        {
+            var movieDto = _movieService.GetMovieById(id);
+            if (movieDto == null) { return NotFound(); }
+            return Ok(movieDto);
         }
     }
 }
