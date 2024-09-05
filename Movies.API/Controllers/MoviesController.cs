@@ -6,9 +6,14 @@ namespace Movies.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class MoviesController(IMovieService movieService) : ControllerBase
+    public class MoviesController : ControllerBase
     {
-        private readonly IMovieService _movieService = movieService;
+        private readonly IMovieService _movieService;
+
+        public MoviesController(IMovieService movieService)
+        {
+            _movieService = movieService;
+        }
 
         [HttpGet]
         public ActionResult<IEnumerable<MovieDto>> GetMovies()

@@ -8,15 +8,21 @@ namespace Movies.API.Mappers
         public static IEnumerable<MovieDto> MapCollectionToDto(IEnumerable<Movie> movies)
         {
             return movies.Select(movie => new MovieDto(
-                movie.Title,
-                movie.Rating,
-                movie.ReleaseDate,
-                movie.Description));
+                Id: movie.MovieId,
+                Title: movie.Title,
+                Rating: movie.Rating,
+                ReleaseDate: movie.ReleaseDate,
+                Description: movie.Description));
         }
 
         public static MovieDto MapSingleToDto(Movie movie)
         {
-            return new MovieDto(movie.Title, movie.Rating, movie.ReleaseDate, movie.Description);
+            return new MovieDto(
+                Id: movie.MovieId,
+                Title: movie.Title,
+                Rating: movie.Rating,
+                ReleaseDate: movie.ReleaseDate,
+                Description: movie.Description);
         }
 
         //public static Movie ToEntity(this MovieForCreationDto dto)
