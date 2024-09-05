@@ -1,6 +1,6 @@
 ﻿using Movies.API.Data;
 using Movies.API.Mappers;
-using Movies.API.Models.DTO;
+using Movies.API.Models.Dtos;
 
 namespace Movies.API.Services
 {

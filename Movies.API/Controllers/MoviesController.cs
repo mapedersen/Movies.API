@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Movies.API.Models.DTO;
+using Movies.API.Models.Dtos;
 using Movies.API.Services;
 
 namespace Movies.API.Controllers

@@ -1,4 +1,4 @@
-﻿namespace Movies.API.Models.DTO
+﻿namespace Movies.API.Models.Dtos
 {
     public record MovieDto(
         string Title,

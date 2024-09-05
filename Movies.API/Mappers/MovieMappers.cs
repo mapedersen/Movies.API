@@ -1,4 +1,4 @@
-﻿using Movies.API.Models.DTO;
+﻿using Movies.API.Models.Dtos;
 using Movies.API.Models.Entities;
 
 namespace Movies.API.Mappers
@@ -18,5 +18,17 @@ namespace Movies.API.Mappers
         {
             return new MovieDto(movie.Title, movie.Rating, movie.ReleaseDate, movie.Description);
         }
+
+        //public static Movie ToEntity(this MovieForCreationDto dto)
+        //{
+        //    return new Movie
+        //    {
+        //        Title = dto.Title,
+        //        Rating = dto.Rating,
+        //        ReleaseDate = dto.ReleaseDate,
+        //        Description = dto.Description,
+        //        DirectorId = dto.DirectorId,
+        //    };
+        //}
     }
 }
