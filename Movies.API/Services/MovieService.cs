@@ -1,6 +1,7 @@
 ﻿using Movies.API.Data;
 using Movies.API.Mappers;
-using Movies.API.Models.Dtos;
+using Movies.API.Models.Entities;
+using Movies.API.Models.MovieDtos;
 
 namespace Movies.API.Services
 {
@@ -28,6 +29,22 @@ namespace Movies.API.Services
                 return null;
             }
             return movie.ToDto();
+        }
+
+        public Movie AddMovie(MovieForCreationDto movieForCreationDto)
+        {
+            var newMovie = new Movie
+            {
+                Title = movieForCreationDto.Title,
+                Rating = movieForCreationDto.Rating,
+                ReleaseDate = movieForCreationDto.ReleaseDate,
+                Description = movieForCreationDto.Description,
+                DirectorId = movieForCreationDto.DirectorId
+            };
+            _context.Movies.Add(newMovie);
+            _context.SaveChanges();
+            return newMovie;
+
         }
     }
 }

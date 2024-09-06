@@ -1,5 +1,5 @@
-﻿using Movies.API.Models.Dtos;
-using Movies.API.Models.Entities;
+﻿using Movies.API.Models.Entities;
+using Movies.API.Models.MovieDtos;
 
 namespace Movies.API.Mappers
 {

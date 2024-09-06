@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Movies.API.Models.Dtos;
+using Movies.API.Models.MovieDtos;
 using Movies.API.Services;
 
 namespace Movies.API.Controllers
@@ -29,6 +29,13 @@ namespace Movies.API.Controllers
             var movieDto = _movieService.GetMovieById(id);
             if (movieDto == null) { return NotFound(); }
             return Ok(movieDto);
+        }
+
+        [HttpPost]
+        public IActionResult AddMovie([FromBody] MovieForCreationDto movieForCreationDto)
+        {
+            var addedMovie = _movieService.AddMovie(movieForCreationDto);
+            return Ok(addedMovie);
         }
     }
 }
