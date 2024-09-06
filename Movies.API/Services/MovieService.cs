@@ -16,10 +16,10 @@ namespace Movies.API.Services
         public IEnumerable<MovieDto> GetAllMovies()
         {
             var movies = _context.Movies.ToList();
-            return MovieMappers.MapCollectionToDto(movies);
+            return movies.ToDto();
         }
 
-        public MovieDto GetMovieById(int id)
+        public MovieDto? GetMovieById(int id)
         {
             var movie = _context.Movies.FirstOrDefault(x => x.MovieId == id);
 
@@ -27,7 +27,7 @@ namespace Movies.API.Services
             {
                 return null;
             }
-            return MovieMappers.MapSingleToDto(movie);
+            return movie.ToDto();
         }
     }
 }

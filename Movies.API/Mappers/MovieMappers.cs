@@ -5,17 +5,7 @@ namespace Movies.API.Mappers
 {
     public static class MovieMappers
     {
-        public static IEnumerable<MovieDto> MapCollectionToDto(IEnumerable<Movie> movies)
-        {
-            return movies.Select(movie => new MovieDto(
-                Id: movie.MovieId,
-                Title: movie.Title,
-                Rating: movie.Rating,
-                ReleaseDate: movie.ReleaseDate,
-                Description: movie.Description));
-        }
-
-        public static MovieDto MapSingleToDto(Movie movie)
+        public static MovieDto ToDto(this Movie movie)
         {
             return new MovieDto(
                 Id: movie.MovieId,
@@ -24,6 +14,11 @@ namespace Movies.API.Mappers
                 ReleaseDate: movie.ReleaseDate,
                 Description: movie.Description);
         }
+        public static IEnumerable<MovieDto> ToDto(this IEnumerable<Movie> movies)
+        {
+            return movies.Select(movie => movie.ToDto());
+        }
+
 
         //public static Movie ToEntity(this MovieForCreationDto dto)
         //{
