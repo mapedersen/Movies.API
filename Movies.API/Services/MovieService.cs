@@ -56,32 +56,9 @@ namespace Movies.API.Services
                 return null;
             }
 
-            if (!string.IsNullOrEmpty(movieForUpdateDto.Title))
-            {
-                movie.Title = movieForUpdateDto.Title;
-            }
-
-            if (movieForUpdateDto.Rating.HasValue)
-            {
-                movie.Rating = movieForUpdateDto.Rating.Value;
-            }
-
-            if (movieForUpdateDto.ReleaseDate.HasValue)
-            {
-                movie.ReleaseDate = movieForUpdateDto.ReleaseDate.Value;
-            }
-
-            if (!string.IsNullOrEmpty(movieForUpdateDto.Description))
-            {
-                movie.Description = movieForUpdateDto.Description;
-            }
-
-            if (movieForUpdateDto.DirectorId.HasValue)
-            {
-                movie.DirectorId = movieForUpdateDto.DirectorId.Value;
-            }
-
+            movie.UpdateMovieFromDto(movieForUpdateDto);
             _context.SaveChanges();
+
             return movie.ToDto();
         }
     }
