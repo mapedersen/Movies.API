@@ -43,6 +43,9 @@ namespace Movies.API.Controllers
         public IActionResult UpdateMovie([FromRoute] int id, [FromBody] MovieForUpdateDto movieForUpdateDto)
         {
             var movieToUpdate = _movieService.UpdateMovie(id, movieForUpdateDto);
+
+            if (movieToUpdate == null) { return NotFound(); }
+
             return Ok(movieToUpdate);
         }
 

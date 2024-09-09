@@ -19,10 +19,10 @@ namespace Movies.API.Models.MovieDtos
      );
 
     public record MovieForUpdateDto(
-        string Title,
-        long Rating,
-        DateTime ReleaseDate,
-        string Description,
-        int DirectorId
+        string? Title,
+        long? Rating,
+        DateTime? ReleaseDate,
+        string? Description,
+        int? DirectorId
     );
 }

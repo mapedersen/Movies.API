@@ -7,6 +7,6 @@ namespace Movies.API.Services
         IEnumerable<MovieDto> GetAllMovies();
         MovieDto? GetMovieById(int id);
         MovieDto AddMovie(MovieForCreationDto movieForCreationDto);
-        MovieDto UpdateMovie(int id, MovieForUpdateDto movieForUpdateDto);
+        MovieDto? UpdateMovie(int id, MovieForUpdateDto movieForUpdateDto);
     }
 }

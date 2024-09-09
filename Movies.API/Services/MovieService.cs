@@ -47,15 +47,39 @@ namespace Movies.API.Services
 
         }
 
-        public MovieDto UpdateMovie(int id, MovieForUpdateDto movieForUpdateDto)
+        public MovieDto? UpdateMovie(int id, MovieForUpdateDto movieForUpdateDto)
         {
             var movie = _context.Movies.FirstOrDefault(x => x.MovieId == id);
 
-            movie.Title = movieForUpdateDto.Title;
-            movie.Rating = movieForUpdateDto.Rating;
-            movie.ReleaseDate = movieForUpdateDto.ReleaseDate;
-            movie.Description = movieForUpdateDto.Description;
-            movie.DirectorId = movieForUpdateDto.DirectorId;
+            if (movie == null)
+            {
+                return null;
+            }
+
+            if (!string.IsNullOrEmpty(movieForUpdateDto.Title))
+            {
+                movie.Title = movieForUpdateDto.Title;
+            }
+
+            if (movieForUpdateDto.Rating.HasValue)
+            {
+                movie.Rating = movieForUpdateDto.Rating.Value;
+            }
+
+            if (movieForUpdateDto.ReleaseDate.HasValue)
+            {
+                movie.ReleaseDate = movieForUpdateDto.ReleaseDate.Value;
+            }
+
+            if (!string.IsNullOrEmpty(movieForUpdateDto.Description))
+            {
+                movie.Description = movieForUpdateDto.Description;
+            }
+
+            if (movieForUpdateDto.DirectorId.HasValue)
+            {
+                movie.DirectorId = movieForUpdateDto.DirectorId.Value;
+            }
 
             _context.SaveChanges();
             return movie.ToDto();
