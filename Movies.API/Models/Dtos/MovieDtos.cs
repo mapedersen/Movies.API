@@ -17,4 +17,12 @@ namespace Movies.API.Models.MovieDtos
          [MaxLength(500)] string Description,
          [Required] int DirectorId
      );
+
+    public record MovieForUpdateDto(
+        string Title,
+        long Rating,
+        DateTime ReleaseDate,
+        string Description,
+        int DirectorId
+    );
 }

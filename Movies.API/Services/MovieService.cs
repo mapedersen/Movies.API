@@ -31,7 +31,7 @@ namespace Movies.API.Services
             return movie.ToDto();
         }
 
-        public Movie AddMovie(MovieForCreationDto movieForCreationDto)
+        public MovieDto AddMovie(MovieForCreationDto movieForCreationDto)
         {
             var newMovie = new Movie
             {
@@ -43,8 +43,22 @@ namespace Movies.API.Services
             };
             _context.Movies.Add(newMovie);
             _context.SaveChanges();
-            return newMovie;
+            return newMovie.ToDto();
 
+        }
+
+        public MovieDto UpdateMovie(int id, MovieForUpdateDto movieForUpdateDto)
+        {
+            var movie = _context.Movies.FirstOrDefault(x => x.MovieId == id);
+
+            movie.Title = movieForUpdateDto.Title;
+            movie.Rating = movieForUpdateDto.Rating;
+            movie.ReleaseDate = movieForUpdateDto.ReleaseDate;
+            movie.Description = movieForUpdateDto.Description;
+            movie.DirectorId = movieForUpdateDto.DirectorId;
+
+            _context.SaveChanges();
+            return movie.ToDto();
         }
     }
 }

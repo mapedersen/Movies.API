@@ -34,8 +34,17 @@ namespace Movies.API.Controllers
         [HttpPost]
         public IActionResult AddMovie([FromBody] MovieForCreationDto movieForCreationDto)
         {
-            var addedMovie = _movieService.AddMovie(movieForCreationDto);
-            return Ok(addedMovie);
+            var movieToAdd = _movieService.AddMovie(movieForCreationDto);
+            return Ok(movieToAdd);
         }
+
+        [HttpPut]
+        [Route("{id}")]
+        public IActionResult UpdateMovie([FromRoute] int id, [FromBody] MovieForUpdateDto movieForUpdateDto)
+        {
+            var movieToUpdate = _movieService.UpdateMovie(id, movieForUpdateDto);
+            return Ok(movieToUpdate);
+        }
+
     }
 }

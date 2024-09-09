@@ -18,18 +18,5 @@ namespace Movies.API.Mappers
         {
             return movies.Select(movie => movie.ToDto());
         }
-
-
-        //public static Movie ToEntity(this MovieForCreationDto dto)
-        //{
-        //    return new Movie
-        //    {
-        //        Title = dto.Title,
-        //        Rating = dto.Rating,
-        //        ReleaseDate = dto.ReleaseDate,
-        //        Description = dto.Description,
-        //        DirectorId = dto.DirectorId,
-        //    };
-        //}
     }
 }

@@ -10,6 +10,7 @@
 
         // Foreign key
         public int DirectorId { get; set; }
+
         // Navigation property
         public Director Director { get; set; } = null!;
 
